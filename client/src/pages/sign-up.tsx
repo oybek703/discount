@@ -14,7 +14,7 @@ import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/layout/Header'
-import { setCookie } from 'nookies'
+import { useAppContext } from '../context/app.context'
 
 interface ISignUpFormValues {
   username: string
@@ -31,6 +31,7 @@ const formInitialState: ISignUpFormValues = {
 }
 
 const SignUp = () => {
+  const { setToken } = useAppContext()
   const { push } = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const [formValues, setFormValues] =
@@ -46,7 +47,7 @@ const SignUp = () => {
       setLoading(true)
       const { data } = await axiosInstance.post('/api/auth/signUp', formValues)
       const { accessToken } = data
-      setCookie(null, '_token', accessToken)
+      setToken(accessToken)
       setLoading(false)
       await push(routeNames.main)
     } catch (e: unknown) {

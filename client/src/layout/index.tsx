@@ -4,9 +4,8 @@ import { discountTheme } from '@/theme'
 import { ThemeProvider } from '@mui/material'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
-import dynamic from 'next/dynamic'
-
-const Header = dynamic(() => import('@/layout/Header'), { ssr: false })
+import { AppContextProvider } from '@/context/app.context'
+import Header from '@/layout/Header'
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
@@ -23,12 +22,14 @@ export const withLayout = <T extends Record<string, unknown>>(
 ) => {
   return function (props: T) {
     return (
-      <ThemeProvider theme={discountTheme}>
-        <Layout>
-          <Component {...props} />
-          <ToastContainer theme="colored" />
-        </Layout>
-      </ThemeProvider>
+      <AppContextProvider>
+        <ThemeProvider theme={discountTheme}>
+          <Layout>
+            <Component {...props} />
+            <ToastContainer theme="colored" />
+          </Layout>
+        </ThemeProvider>
+      </AppContextProvider>
     )
   }
 }

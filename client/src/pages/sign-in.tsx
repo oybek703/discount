@@ -11,10 +11,10 @@ import {
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import axiosInstance from '@/utils/axios.instance'
-import { setCookie } from 'nookies'
 import { routeNames } from '@/layout/Header'
 import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
+import { useAppContext } from '../context/app.context'
 
 interface ISignInFormValues {
   username: string
@@ -27,6 +27,7 @@ const formInitialState: ISignInFormValues = {
 }
 
 const SignIn = () => {
+  const { setToken } = useAppContext()
   const { push } = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const [formValues, setFormValues] =
@@ -42,7 +43,7 @@ const SignIn = () => {
       setLoading(true)
       const { data } = await axiosInstance.post('/api/auth/signIn', formValues)
       const { accessToken } = data
-      setCookie(null, '_token', accessToken)
+      setToken(accessToken)
       setLoading(false)
       await push(routeNames.main)
     } catch (e: unknown) {
@@ -74,7 +75,6 @@ const SignIn = () => {
               value={formValues.username}
               onChange={handleChange}
               name="username"
-              color="secondary"
               required
               size="small"
               label="Username"

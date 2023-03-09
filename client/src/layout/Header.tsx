@@ -5,9 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import LoginIcon from '@mui/icons-material/Login'
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt'
-import { destroyCookie, parseCookies } from 'nookies'
 import Person2Icon from '@mui/icons-material/Person2'
 import LogoutIcon from '@mui/icons-material/Logout'
+import { useAppContext } from '@/context/app.context'
 
 export enum routeNames {
   main = '/',
@@ -18,9 +18,9 @@ export enum routeNames {
 
 const Header = () => {
   const { pathname, reload } = useRouter()
-  const { _token: accessToken } = parseCookies()
+  const { token, destroyToken } = useAppContext()
   const handleLogout = () => {
-    destroyCookie(null, '_token')
+    destroyToken()
     reload()
   }
   return (
@@ -46,7 +46,7 @@ const Header = () => {
         </Typography>
         <SearchComponent />
         <Grid>
-          {accessToken ? (
+          {token ? (
             <Fragment>
               <Button
                 component={Link}
