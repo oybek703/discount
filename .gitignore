@@ -1,13 +1,43 @@
 # IDE files
-.idea
-.vscode
+**/.idea
+**/.vscode
 
 # Temporary data
 /api/data
 /api/dist
 
 # Env variables
-api/.env
+/api/.env
+/client/.env*.local
 
-# Node modules
+# Dependencies
 /api/node_modules
+/client/node_modules
+/client/.pnp
+/client/.pnp.js
+/client/.vercel
+
+# testing
+/client/coverage
+
+# typescript
+/client/*.tsbuildinfo
+/client/next-env.d.ts
+
+
+# next.js
+/client/.next/
+/client/out/
+
+# production
+/client/build
+
+# misc
+/client/.DS_Store
+/client/*.pem
+
+# debug
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
+/client/.pnpm-debug.log*
