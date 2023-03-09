@@ -1,1 +1,13 @@
+# IDE files
 .idea
+.vscode
+
+# Temporary data
+/api/data
+/api/dist
+
+# Env variables
+api/.env
+
+# Node modules
+/api/node_modules
