@@ -8,13 +8,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt'
 import Person2Icon from '@mui/icons-material/Person2'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { useAppContext } from '@/context/app.context'
-
-export enum routeNames {
-  main = '/',
-  signIn = '/sign-in',
-  signUp = '/sign-up',
-  account = '/account'
-}
+import { routeNames } from '@/common/route-names'
 
 const Header = () => {
   const { pathname, reload } = useRouter()
@@ -23,6 +17,7 @@ const Header = () => {
     destroyToken()
     reload()
   }
+
   return (
     <AppBar>
       <Toolbar
@@ -44,8 +39,8 @@ const Header = () => {
         >
           Discounts
         </Typography>
-        <SearchComponent />
-        <Grid>
+        <Grid sx={{ display: 'flex' }}>
+          <SearchComponent />
           {token ? (
             <Fragment>
               <Button
@@ -58,9 +53,7 @@ const Header = () => {
                   marginRight: '10px'
                 }}
                 size="small"
-                color={
-                  pathname === routeNames.account ? 'secondary' : 'inherit'
-                }
+                color={pathname === routeNames.account ? 'warning' : 'inherit'}
                 variant={
                   pathname === routeNames.account ? 'contained' : 'outlined'
                 }
@@ -93,7 +86,7 @@ const Header = () => {
                   marginRight: '10px'
                 }}
                 size="small"
-                color={pathname === routeNames.signIn ? 'secondary' : 'inherit'}
+                color={pathname === routeNames.signIn ? 'warning' : 'inherit'}
                 variant={
                   pathname === routeNames.signIn ? 'contained' : 'outlined'
                 }

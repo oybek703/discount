@@ -23,15 +23,12 @@ export const useAppContext = () => useContext(AppContext)
 
 export const AppContextProvider = ({ children }: PropsWithChildren) => {
   const [token, setToken] = useState<string | null>(null)
-
   const setAccessToken = (token: string | null) => {
     setCookie(null, '_token', token!)
   }
-
   const destroyToken = () => {
     destroyCookie(null, '_token')
   }
-
   useEffect(() => {
     const { _token: accessToken } = parseCookies()
     setToken(accessToken)
