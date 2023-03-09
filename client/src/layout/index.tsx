@@ -1,8 +1,12 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react'
-import Header from '@/layout/Header'
 import Footer from '@/layout/Footer'
 import { discountTheme } from '@/theme'
 import { ThemeProvider } from '@mui/material'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
+import dynamic from 'next/dynamic'
+
+const Header = dynamic(() => import('@/layout/Header'), { ssr: false })
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
@@ -22,6 +26,7 @@ export const withLayout = <T extends Record<string, unknown>>(
       <ThemeProvider theme={discountTheme}>
         <Layout>
           <Component {...props} />
+          <ToastContainer theme="colored" />
         </Layout>
       </ThemeProvider>
     )

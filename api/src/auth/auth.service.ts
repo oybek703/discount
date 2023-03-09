@@ -17,12 +17,12 @@ export class AuthService {
     const user = await this.usersService.findOne(username)
     if (!user)
       throw new BadRequestException({ message: INVALID_CREDENTIALS_ERROR })
-    const isValidPassword = compare(password, user.password)
+    const isValidPassword = await compare(password, user.password)
     if (isValidPassword)
       return {
         userId: user.id
       }
-    return null
+    else throw new BadRequestException({ message: INVALID_CREDENTIALS_ERROR })
   }
 
   async createUser(body: SignUpDto) {
