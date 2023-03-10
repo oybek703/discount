@@ -9,7 +9,8 @@
 # Env variables
 /api/.env
 /api/development.env
-/client/.env*.local
+/client/.env.local
+/client/.env.production
 
 # Dependencies
 /api/node_modules

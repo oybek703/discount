@@ -52,6 +52,7 @@ const SignIn = () => {
         </Typography>
         <form onSubmit={handleSubmit}>
           <SmallFormControl
+            disabled={loading}
             name="username"
             label="Username"
             handleChange={handleChange}
@@ -59,6 +60,7 @@ const SignIn = () => {
             value={formValues.username}
           />
           <SmallFormControl
+            disabled={loading}
             name="password"
             label="Password"
             handleChange={handleChange}

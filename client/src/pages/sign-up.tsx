@@ -9,7 +9,7 @@ import SubmitBtn from '@/components/SubmitBtn'
 import { useFormValues } from '@/hooks/useFormValues'
 import PageHead from '@/components/PageHead'
 import SmallFormControl from '@/components/SmallFormControl'
-import { showError } from '../utils/error'
+import { showError } from '@/utils/error'
 
 interface ISignUpFormValues {
   username: string
@@ -56,6 +56,7 @@ const SignUp = () => {
         </Typography>
         <form onSubmit={handleSubmit}>
           <SmallFormControl
+            disabled={loading}
             name="username"
             label="Username"
             handleChange={handleChange}
@@ -63,6 +64,7 @@ const SignUp = () => {
             value={formValues.username}
           />
           <SmallFormControl
+            disabled={loading}
             name="firstName"
             label="First name"
             handleChange={handleChange}
@@ -70,6 +72,7 @@ const SignUp = () => {
             value={formValues.firstName}
           />
           <SmallFormControl
+            disabled={loading}
             name="lastName"
             label="Last name"
             handleChange={handleChange}
@@ -77,6 +80,7 @@ const SignUp = () => {
             value={formValues.lastName}
           />
           <SmallFormControl
+            disabled={loading}
             name="password"
             label="Password"
             handleChange={handleChange}

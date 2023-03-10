@@ -5,6 +5,7 @@ interface ICustomFormControlProps {
   value?: unknown
   handleChange: ChangeEventHandler
   required?: boolean
+  disabled?: boolean
   label: string
   name: string
   type?: InputHTMLAttributes<unknown>['type']
@@ -16,6 +17,7 @@ const SmallFormControl = ({
   required,
   label,
   name,
+  disabled,
   type = 'text'
 }: ICustomFormControlProps) => {
   return (
@@ -23,6 +25,7 @@ const SmallFormControl = ({
       sx={{ margin: '40px auto', display: 'block', textAlign: 'center' }}
     >
       <TextField
+        disabled={disabled}
         size="small"
         type={type}
         value={value}
