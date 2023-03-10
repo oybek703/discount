@@ -1,13 +1,7 @@
 FROM node
-
 WORKDIR /opt/app
-
-ADD package*.json ./
-
-RUN npm install --prefix api
-
-ADD . .
-
-RUN npm run build --prefix api
-
-CMD ["node", "./api/dist/main.js"]
+ADD api/package*.json ./
+RUN npm install
+ADD api .
+RUN npm run build
+CMD ["node", "./dist/main.js"]
