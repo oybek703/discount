@@ -64,6 +64,7 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
     const { _token: accessToken } = parseCookies()
     setToken(accessToken)
     if (accessToken) (async () => await getUser())()
+    //  eslint-disable-next-line
   }, [token])
   return (
     <AppContext.Provider

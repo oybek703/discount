@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "api:dev": "npm run start:dev --prefix api",
-    "client:dev": "npm run dev --prefix client"
+    "client:dev": "npm run dev --prefix client",
+    "build:client": "npm run build --prefix client",
+    "build:api": "npm run build --prefix api",
+    "build": "npm run build:api && npm run build:client"
   },
   "keywords": [],
   "author": "",

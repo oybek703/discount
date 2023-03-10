@@ -20,7 +20,7 @@ const Layout = ({ children }: PropsWithChildren) => {
 export const withLayout = <T extends Record<string, unknown>>(
   Component: FunctionComponent<T>
 ) => {
-  return function (props: T) {
+  return function WrapperComponent(props: T) {
     return (
       <AppContextProvider>
         <ThemeProvider theme={discountTheme}>

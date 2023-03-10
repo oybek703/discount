@@ -38,7 +38,6 @@ const SignIn = () => {
       await push(routeNames.main)
       setLoading(false)
     } catch (e: unknown) {
-      console.log(e)
       showError(e)
       setLoading(false)
     }
