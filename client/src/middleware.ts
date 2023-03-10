@@ -4,7 +4,7 @@ import { routeNames } from '@/common/route-names'
 export const middleware = async (request: NextRequest) => {
   const { pathname } = request.nextUrl
   const tokenData = request.cookies.get('_token')
-  if (pathname === routeNames.account) {
+  if (pathname === routeNames.profile) {
     if (!tokenData || !tokenData.value) {
       return NextResponse.redirect(new URL(routeNames.signIn, request.url))
     }

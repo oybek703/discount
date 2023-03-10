@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { withLayout } from '@/layout'
+import SearchComponent from '@/components/Search'
 
 function Home() {
   return (
@@ -9,6 +10,7 @@ function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <SearchComponent />
       <h1>Home page</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti

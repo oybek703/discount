@@ -2,8 +2,6 @@ import React, { FormEvent, useState } from 'react'
 import { withLayout } from '@/layout'
 import { Grid, Typography } from '@mui/material'
 import axiosInstance from '@/utils/axios.instance'
-import { AxiosError } from 'axios'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import { useAppContext } from '@/context/app.context'
 import { routeNames } from '@/common/route-names'
@@ -11,6 +9,7 @@ import SubmitBtn from '@/components/SubmitBtn'
 import { useFormValues } from '@/hooks/useFormValues'
 import PageHead from '@/components/PageHead'
 import SmallFormControl from '@/components/SmallFormControl'
+import { showError } from '../utils/error'
 
 interface ISignUpFormValues {
   username: string
@@ -44,13 +43,7 @@ const SignUp = () => {
       await push(routeNames.main)
       setLoading(false)
     } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        let message = e.message
-        if (e.response?.data) {
-          message = e.response.data.message
-        }
-        toast.error(message)
-      }
+      showError(e)
       setLoading(false)
     }
   }

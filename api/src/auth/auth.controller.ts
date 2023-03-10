@@ -13,6 +13,7 @@ export class AuthController {
   ) {}
 
   @ApiTags('Auth')
+  @HttpCode(HttpStatus.OK)
   @Post('signIn')
   async signIn(@Body() body: SignInDto) {
     const { userId } = await this.authService.validateUser(body)

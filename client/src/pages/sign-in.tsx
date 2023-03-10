@@ -3,14 +3,13 @@ import { withLayout } from '@/layout'
 import { Grid, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import axiosInstance from '@/utils/axios.instance'
-import { AxiosError } from 'axios'
-import { toast } from 'react-toastify'
 import { useAppContext } from '@/context/app.context'
 import { routeNames } from '@/common/route-names'
 import SubmitBtn from '@/components/SubmitBtn'
 import { useFormValues } from '@/hooks/useFormValues'
 import PageHead from '@/components/PageHead'
 import SmallFormControl from '@/components/SmallFormControl'
+import { showError } from '@/utils/error'
 
 interface ISignInFormValues {
   username: string
@@ -39,13 +38,8 @@ const SignIn = () => {
       await push(routeNames.main)
       setLoading(false)
     } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        let message = e.message
-        if (e.response?.data) {
-          message = e.response.data.message
-        }
-        toast.error(message)
-      }
+      console.log(e)
+      showError(e)
       setLoading(false)
     }
   }

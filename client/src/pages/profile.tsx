@@ -1,14 +1,15 @@
 import React from 'react'
 import { Grid, Typography } from '@mui/material'
-import Head from 'next/head'
 import { withLayout } from '@/layout'
+import PageHead from '@/components/PageHead'
+import { useAppContext } from '@/context/app.context'
 
-const Account = () => {
+const Profile = () => {
+  const { user } = useAppContext()
+  console.log(user)
   return (
     <>
-      <Head>
-        <title>Account</title>
-      </Head>
+      <PageHead title="Profile" />
       <Grid alignContent="center" justifyContent="center">
         <Typography sx={{ marginTop: '60px' }} variant="h3" align="center">
           Profile settings
@@ -18,4 +19,4 @@ const Account = () => {
   )
 }
 
-export default withLayout(Account)
+export default withLayout(Profile)
