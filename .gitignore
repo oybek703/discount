@@ -8,6 +8,7 @@
 
 # Env variables
 /api/.env
+/api/development.env
 /client/.env*.local
 
 # Dependencies

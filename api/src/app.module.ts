@@ -5,10 +5,13 @@ import { UsersModule } from './users/users.module'
 import { getTypeormConfig } from './configs/typeorm.config'
 import { AdsModule } from './ads/ads.module'
 import { AuthModule } from './auth/auth.module'
+import { join } from 'path'
+
+const envFilePath = join(process.cwd(), `${process.env.NODE_ENV || ''}.env`)
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath }),
     TypeOrmModule.forRootAsync({
       useFactory: getTypeormConfig,
       inject: [ConfigService]

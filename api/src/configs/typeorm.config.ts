@@ -7,12 +7,15 @@ import { Location } from '../ads/entities/location.entity'
 
 export const getTypeormConfig = async (
   configService: ConfigService
-): Promise<TypeOrmModuleOptions> => ({
-  type: 'postgres',
-  database: configService.get('DB_NAME'),
-  port: configService.get('DB_PORT'),
-  username: configService.get('DB_USERNAME'),
-  password: configService.get('DB_PASSWORD'),
-  entities: [User, Location, Category, Ad],
-  synchronize: configService.get('NODE_ENV') === 'development'
-})
+): Promise<TypeOrmModuleOptions> => {
+  return {
+    type: 'postgres',
+    database: configService.get('PGDATABASE'),
+    host: configService.get('PGHOST'),
+    password: configService.get('PGPASSWORD'),
+    port: configService.get('PGPORT'),
+    username: configService.get('PGUSER'),
+    entities: [User, Location, Category, Ad],
+    synchronize: configService.get('NODE_ENV') === 'development'
+  }
+}
