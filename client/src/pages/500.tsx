@@ -6,7 +6,7 @@ import PageHead from '@/components/PageHead'
 const InternalServerError = () => {
   return (
     <>
-      <PageHead title="Internal server error!" />
+      <PageHead title="Внутренняя ошибка сервера!" />
       <Grid
         sx={{
           display: 'grid',
@@ -16,7 +16,7 @@ const InternalServerError = () => {
         }}
       >
         <Typography color="red" variant="h3">
-          Internal server error - 500!
+          Ошибка - 500!
         </Typography>
       </Grid>
     </>

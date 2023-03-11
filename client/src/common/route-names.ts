@@ -4,5 +4,5 @@ export enum routeNames {
   signUp = '/sign-up',
   profile = '/profile',
   about = '/about',
-  contact = '/contact'
+  contacts = '/contacts'
 }

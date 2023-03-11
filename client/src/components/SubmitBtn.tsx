@@ -15,7 +15,7 @@ const SubmitBtn = ({ loading }: ISubmitBtnProps) => {
         endIcon={loading && <CircularProgress size={15} color="secondary" />}
         sx={{ margin: '40px auto', display: 'flex' }}
       >
-        Submit
+        Отправить
       </Button>
     </>
   )

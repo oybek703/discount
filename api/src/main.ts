@@ -16,15 +16,16 @@ async function bootstrap() {
   app.setGlobalPrefix(apiPrefix)
   const config = new DocumentBuilder()
     .addBearerAuth()
-    .setTitle('Discount APP')
-    .setDescription('Discount API documentation')
+    .setTitle('Discount API')
+    .setDescription('API documentation for Discount app.')
     .setVersion('1.0')
     .build()
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup(`${apiPrefix}/docs`, app, document)
   await app.listen(port)
   console.log(
-    `Server is running in ${nodeEnv} mode on port ${port}...`.yellow.bold
+    `Server is running in ${nodeEnv || 'production'} mode on port ${port}...`
+      .yellow.bold
   )
 }
 ;(async () => await bootstrap())()

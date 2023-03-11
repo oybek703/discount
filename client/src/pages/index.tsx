@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { withLayout } from '@/layout'
 import SearchComponent from '@/components/Search'
 import { Typography } from '@mui/material'
@@ -7,46 +6,51 @@ import PageHead from '@/components/PageHead'
 function Home() {
   return (
     <>
-      <PageHead title="Discounts - find cheapest!">
+      <PageHead title="Скидки - найди дешевле!">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </PageHead>
       <SearchComponent />
-      <Typography variant="h3">Home page</Typography>
+      <Typography variant="h3">Домашняя страница</Typography>
       <Typography>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-        commodi distinctio dolorum excepturi maiores nam numquam omnis
-        perferendis possimus sunt! Alias amet architecto aspernatur autem
-        consequatur dignissimos distinctio dolores eaque, earum eligendi
-        excepturi exercitationem harum id illum incidunt molestiae praesentium
-        rem repellendus reprehenderit vel! A aliquid atque distinctio, enim ex
-        facilis fugiat hic id illo impedit in inventore magnam minima odio
-        officiis perferendis quia quos, recusandae sed similique. Ab aliquam
-        commodi debitis ipsa itaque officia quia, vel! Atque dolorum eaque
-        inventore laboriosam magni rem? Animi, commodi fugiat labore molestiae
-        necessitatibus sapiente tempore unde voluptates. Aspernatur facere iste,
-        nam porro quos ullam voluptas? Amet fugit, harum laborum magni porro
-        reprehenderit sit veritatis. Aliquid, at autem debitis dolorem est eum
-        eveniet id nesciunt nisi nulla recusandae sequi velit. Aliquam
-        consectetur dignissimos facilis possimus voluptatem! Accusantium atque
-        aut cum deserunt dicta dolorum error esse et eveniet ex excepturi harum
-        id illum impedit necessitatibus placeat provident quasi qui quos
-        recusandae sint sit soluta temporibus, tenetur ullam, voluptate
-        voluptates! Accusamus ad distinctio explicabo, mollitia omnis quasi
-        sapiente voluptate. Corporis cum dicta earum mollitia optio quae velit.
-        Ad aperiam, dicta, distinctio enim esse expedita in incidunt inventore
-        labore magnam nemo nesciunt, pariatur perferendis perspiciatis
-        reiciendis rem sed sequi similique sit sunt tempore voluptate voluptates
-        voluptatum. Ad architecto commodi earum id porro quaerat quas quos sint.
-        Alias aspernatur blanditiis incidunt inventore itaque ratione? Ab culpa
-        dicta doloremque et facere, illo reiciendis voluptatibus. A alias animi
-        aperiam debitis deleniti deserunt dolorem doloremque doloribus eum,
-        excepturi fugiat in, inventore nam natus neque odio perspiciatis quas,
-        quia rem sequi sunt unde voluptates. Adipisci consequatur cumque facere
-        itaque nihil officia omnis perspiciatis quae sunt temporibus! Architecto
-        commodi dolore error eum harum hic illum laboriosam nam nobis, officiis
-        omnis provident, sed sequi, sit tempora velit vero. Minus natus optio
-        possimus quod voluptates.
+        Лорем ипсум долор сит амет, сеа агам доминг еи, ат цум сумо игнота
+        еирмод. Еу тота елояуентиам сит, вих ет фацер плацерат сигниферумяуе.
+        Идяуе иусто детерруиссет не еам, при ин яуот еррорибус реферрентур. Еам
+        ностер саперет легендос ан, не вим легере интерессет. Тациматес платонем
+        ин вим. Модо фугит фалли яуи ут, вел нонумы адолесценс либерависсе ин.
+        Феугаит омиттам патриояуе вих ин, еум цонвенире дефиниебас цонституам
+        ин. Ирацундиа дефинитионес ет меи. Ат елит дицам ехпетендис нам, велит
+        цонсеяуат ан вис, еи нец ессе апериам праесент. Еам суас ехерци не, ех
+        еос поссе еяуидем дефинитионем. Лаборес плацерат ин ест, модус еяуидем
+        те цум, цум еррорибус маиестатис еу. Магна реяуе волуптатибус яуо те. Еу
+        про праесент ехпетенда интеллегам. Ех дицунт пхаедрум нам, нец не
+        еррорибус репримияуе диссентиет, велит долорум инцидеринт еу сед. Еи
+        малорум диссентиунт еос, мел ад аугуе луптатум тациматес. Те при тамяуам
+        фацилиси. Еу алтерум еуисмод вивендо пер. Примис перпетуа дуо ех. Велит
+        опортеат ехплицари ат цум, еи пер лорем етиам яуандо, граеце постеа ех
+        нам. Елигенди аццусата еос ид. Нострум десеруиссе витуператорибус вим
+        ет, атяуи персецути сеа еи. Меа маиестатис диссентиас не, еа юсто
+        диссентиет яуо. Ин темпор епицури меи, яуот цивибус но еум. Прима
+        десеруиссе но вим, ин хис инани перфецто. Еа еам детрахит урбанитас,
+        нихил долор цотидиеяуе еам ан. Деленити праесент яуо но, нисл праесент
+        еос ин. Нумяуам минимум еа дуо, ут ассум веритус инцидеринт яуи. Сеа еу
+        нулла реферрентур. Цу веро иллум облияуе нам, ат вис легимус аццусам. Ан
+        иус ессент лобортис салутатус, сед поссим лобортис цонвенире ут. Яуи
+        сцаевола цонтентионес ад, хабео дицат инцидеринт мел ид, цум еу тритани
+        дебитис. Чоро губергрен еам ет, цлита евертитур цу сеа. Неморе апеириан
+        елецтрам пер еи, ин еос дицта феугаит детерруиссет, ан омнес пертинах
+        детерруиссет вис. Еи пер адмодум сенсибус. Нец елояуентиам цомпрехенсам
+        те. Ат натум лаудем алияуандо при. Хас апеириан мнесарчум аппеллантур
+        ид. Еу лаореет цивибус вел, мел ад еррор ехпетенда. Аугуе диспутатиони
+        меа но. Яуи цлита цонсеяуат адверсариум ех. Хас нибх убияуе ат, яуи
+        долорем граецис аппеллантур не, сит зрил луцилиус пхилосопхиа те. Еос
+        видиссе цонсулату ан. Ех алтерум фацилисис персецути яуо, меи дуис
+        еуисмод сенсибус те, ан стет доцтус фацилисис нам. Хас но малуиссет
+        инструцтиор, ат омнесяуе ирацундиа при. Ид пурто волуптариа сед, иуварет
+        саперет ад еам, еу доминг легимус вих. Ид феугиат сцрипторем сцрибентур
+        еум, алии диспутатиони нец ид. Ет яуо либрис фацилис волуптуа, яуо фацер
+        ехплицари цу. Ад про суммо омнес еффициенди, еос ад виде делецтус.
+        Лабитур постулант мнесарчум еос еи. Те виде утамур цоммуне нам.
       </Typography>
     </>
   )

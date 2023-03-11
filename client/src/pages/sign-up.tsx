@@ -49,16 +49,16 @@ const SignUp = () => {
   }
   return (
     <>
-      <PageHead title="Sign Up" />
+      <PageHead title="Регистрация" />
       <Grid alignContent="center" justifyContent="center">
         <Typography sx={{ marginTop: '60px' }} variant="h3" align="center">
-          Sign Up
+          Регистрация
         </Typography>
         <form onSubmit={handleSubmit}>
           <SmallFormControl
             disabled={loading}
             name="username"
-            label="Username"
+            label="Имя пользователя"
             handleChange={handleChange}
             required={true}
             value={formValues.username}
@@ -66,7 +66,7 @@ const SignUp = () => {
           <SmallFormControl
             disabled={loading}
             name="firstName"
-            label="First name"
+            label="Имя"
             handleChange={handleChange}
             required={true}
             value={formValues.firstName}
@@ -74,7 +74,7 @@ const SignUp = () => {
           <SmallFormControl
             disabled={loading}
             name="lastName"
-            label="Last name"
+            label="Фамилия"
             handleChange={handleChange}
             required={true}
             value={formValues.lastName}
@@ -82,7 +82,7 @@ const SignUp = () => {
           <SmallFormControl
             disabled={loading}
             name="password"
-            label="Password"
+            label="Пароль"
             handleChange={handleChange}
             required={true}
             value={formValues.password}

@@ -28,10 +28,10 @@ const AppContext = createContext<IAppContext>({
 export const useAppContext = () => useContext(AppContext)
 
 export const AppContextProvider = ({ children }: PropsWithChildren) => {
-  const [token, setToken] = useState<string | null>(null)
+  const [token, setToken] = useState<string | null>(parseCookies()._token)
   const [user, setUser] = useState<IUser | undefined>(undefined)
-  const setAccessToken = (token: string | null) => {
-    setCookie(null, '_token', token!, {
+  const setAccessToken = (newToken: string | null) => {
+    setCookie(null, '_token', newToken!, {
       maxAge: 60 * 60 * 24 /* one hour */,
       path: '/'
     })
@@ -41,27 +41,24 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
     destroyCookie(null, '_token')
   }
   const getUser = async () => {
-    if (token) {
-      if (!user) {
-        try {
-          const { data } = await axiosInstance<IUser>('/api/users/me', {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          })
-          localStorage.setItem('_username', data.username)
-          setUser(data)
-        } catch (e) {
-          let status
-          if (e instanceof AxiosError) {
-            status = e.response?.status
+    if (!user) {
+      try {
+        const { data } = await axiosInstance<IUser>('/api/users/me', {
+          headers: {
+            Authorization: `Bearer ${token}`
           }
-          showError(e, status === 401)
+        })
+        localStorage.setItem('_username', data.username)
+        setUser(data)
+      } catch (e) {
+        let status
+        if (e instanceof AxiosError) {
+          status = e.response?.status
         }
+        showError(e, status === 401)
       }
     }
   }
-
   useEffect(() => {
     const { _token: accessToken } = parseCookies()
     setToken(accessToken)

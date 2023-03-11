@@ -6,7 +6,7 @@ import PageHead from '@/components/PageHead'
 const NotFound = () => {
   return (
     <>
-      <PageHead title="Page not found!" />
+      <PageHead title="Страница не найдена!" />
       <Grid
         sx={{
           display: 'grid',
@@ -16,7 +16,7 @@ const NotFound = () => {
         }}
       >
         <Typography color="lightgrey" variant="h3">
-          Page not found - 404!
+          Ошибка - 404!
         </Typography>
       </Grid>
     </>

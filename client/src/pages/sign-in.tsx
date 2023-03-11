@@ -45,16 +45,16 @@ const SignIn = () => {
 
   return (
     <>
-      <PageHead title="Sign In" />
+      <PageHead title="Войти" />
       <Grid alignContent="center" justifyContent="center">
         <Typography sx={{ marginTop: '60px' }} variant="h3" align="center">
-          Sign In
+          Войти
         </Typography>
         <form onSubmit={handleSubmit}>
           <SmallFormControl
             disabled={loading}
             name="username"
-            label="Username"
+            label="Имя пользователя"
             handleChange={handleChange}
             required={true}
             value={formValues.username}
@@ -62,7 +62,7 @@ const SignIn = () => {
           <SmallFormControl
             disabled={loading}
             name="password"
-            label="Password"
+            label="Пароль"
             handleChange={handleChange}
             required={true}
             value={formValues.password}

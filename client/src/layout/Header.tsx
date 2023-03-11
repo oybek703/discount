@@ -2,14 +2,16 @@ import React, { PropsWithChildren, useRef, useState } from 'react'
 import {
   AppBar,
   Button,
-  ButtonGroup,
   ClickAwayListener,
+  Drawer,
   Grid,
+  IconButton,
   MenuList,
   Paper,
   Popper,
   Toolbar,
-  Typography,
+  useMediaQuery,
+  useTheme,
   Zoom
 } from '@mui/material'
 import Link from 'next/link'
@@ -22,9 +24,57 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import Image from 'next/image'
+import MenuIcon from '@mui/icons-material/Menu'
+
+const LogoLink = ({ onClick }: { onClick?: () => void }) => {
+  const theme = useTheme()
+  const downSm = useMediaQuery(theme.breakpoints.down('sm'))
+  return (
+    <Button
+      onClick={onClick}
+      sx={{ border: '2px dashed white', borderRadius: '5px' }}
+      component={Link}
+      href={routeNames.main}
+    >
+      <Image
+        src={'/coupon.png'}
+        alt={'Logo'}
+        width={60}
+        height={downSm ? 25 : 30}
+      />
+    </Button>
+  )
+}
+
+interface ILinkBtnProps {
+  title: string
+  route: routeNames
+  onClick?: () => void
+}
+
+const LinkBtn = ({ title, route, onClick }: ILinkBtnProps) => {
+  const { pathname } = useRouter()
+  return (
+    <Button
+      onClick={onClick}
+      sx={{
+        textTransform: 'none',
+        color: theme => theme.palette.common.white
+      }}
+      size="small"
+      color={pathname === route ? 'secondary' : 'inherit'}
+      variant={pathname === route ? 'contained' : 'outlined'}
+      component={Link}
+      href={route}
+    >
+      {title}
+    </Button>
+  )
+}
 
 export const HeaderBase = ({ children }: PropsWithChildren) => {
-  const { pathname } = useRouter()
+  const theme = useTheme()
+  const downSm = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <AppBar>
       <Toolbar
@@ -32,48 +82,10 @@ export const HeaderBase = ({ children }: PropsWithChildren) => {
           display: 'grid',
           alignContent: 'center',
           gap: '10px',
-          gridTemplateColumns: '70px auto 1fr'
+          gridTemplateColumns: `${downSm ? '0' : '70px'} auto 1fr`
         }}
       >
-        <Button component={Link} href={routeNames.main}>
-          <Image src={'/coupon.png'} alt={'Logo'} width={60} height={30} />
-        </Button>
-        <Grid
-          sx={{
-            display: 'grid',
-            gridAutoFlow: 'column',
-            columnGap: '10px'
-          }}
-        >
-          <Button
-            sx={{
-              textTransform: 'none',
-
-              color: theme => theme.palette.common.white
-            }}
-            size="small"
-            color={pathname === routeNames.about ? 'secondary' : 'inherit'}
-            variant={pathname === routeNames.about ? 'contained' : 'outlined'}
-            component={Link}
-            href={routeNames.about}
-          >
-            About
-          </Button>
-          <Button
-            sx={{
-              textTransform: 'none',
-
-              color: theme => theme.palette.common.white
-            }}
-            size="small"
-            color={pathname === routeNames.contact ? 'secondary' : 'inherit'}
-            variant={pathname === routeNames.contact ? 'contained' : 'outlined'}
-            component={Link}
-            href={routeNames.contact}
-          >
-            Contact
-          </Button>
-        </Grid>
+        {downSm ? <span /> : <LogoLink />}
         {children}
       </Toolbar>
     </AppBar>
@@ -81,6 +93,9 @@ export const HeaderBase = ({ children }: PropsWithChildren) => {
 }
 
 const Header = () => {
+  const [drawerState, setDrawerState] = useState<boolean>(false)
+  const theme = useTheme()
+  const downSm = useMediaQuery(theme.breakpoints.down('sm'))
   const anchorRef = useRef(null)
   const [open, setOpen] = useState<boolean>(false)
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
@@ -99,8 +114,56 @@ const Header = () => {
   if (typeof window !== 'undefined') {
     username = localStorage.getItem('_username')
   }
+  const handleDrawerClose = () => setDrawerState(!drawerState)
   return (
     <HeaderBase>
+      {downSm ? (
+        <IconButton
+          onClick={handleDrawerClose}
+          sx={{ paddingLeft: 0, marginLeft: '-10px' }}
+        >
+          <MenuIcon
+            fontSize="large"
+            sx={{ color: theme => theme.palette.common.white }}
+          />
+        </IconButton>
+      ) : (
+        <Grid
+          sx={{
+            display: 'grid',
+            gridAutoFlow: 'column',
+            columnGap: '10px',
+            marginLeft: '40px'
+          }}
+        >
+          <LinkBtn route={routeNames.main} title="Главная" />
+          <LinkBtn route={routeNames.about} title="О нас" />
+          <LinkBtn route={routeNames.contacts} title="Контакты" />
+        </Grid>
+      )}
+      <Drawer
+        PaperProps={{
+          sx: {
+            backgroundColor: theme.palette.primary.main,
+            padding: '0 20px'
+          }
+        }}
+        sx={{ minWidth: '200px', maxWidth: '400px' }}
+        open={drawerState}
+        variant="temporary"
+        transitionDuration={{ appear: 100, enter: 100, exit: 300 }}
+        translate="yes"
+        onClose={handleDrawerClose}
+      >
+        <Grid sx={{ margin: '20px 40px' }}>
+          <LogoLink onClick={handleDrawerClose} />
+        </Grid>
+        <Grid sx={{ display: 'grid', rowGap: '20px' }}>
+          <LinkBtn route={routeNames.main} title="Главная" />
+          <LinkBtn route={routeNames.about} title="О нас" />
+          <LinkBtn route={routeNames.contacts} title="Контакты" />
+        </Grid>
+      </Drawer>
       <Grid sx={{ textAlign: 'right' }}>
         <Button
           onMouseLeave={handleClose}
@@ -115,7 +178,7 @@ const Header = () => {
           color="inherit"
           variant="outlined"
         >
-          {username || 'Account'}
+          {username || 'Аккаунт'}
         </Button>
         <Popper
           anchorEl={anchorEl}
@@ -163,7 +226,7 @@ const Header = () => {
                             : 'outlined'
                         }
                       >
-                        Profile
+                        Профиль
                       </Button>
                       <Button
                         onClick={handleLogout}
@@ -175,7 +238,7 @@ const Header = () => {
                         color="error"
                         variant="outlined"
                       >
-                        Logout
+                        Выйти
                       </Button>
                     </MenuList>
                   ) : (
@@ -200,7 +263,7 @@ const Header = () => {
                             : 'outlined'
                         }
                       >
-                        Sign in
+                        Войти
                       </Button>
                       <Button
                         component={Link}
@@ -216,7 +279,7 @@ const Header = () => {
                             : 'outlined'
                         }
                       >
-                        Sign up
+                        Регистрация
                       </Button>
                     </MenuList>
                   )}
