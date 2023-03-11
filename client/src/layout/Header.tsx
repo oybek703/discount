@@ -1,7 +1,8 @@
-import React, { Fragment, PropsWithChildren, useRef, useState } from 'react'
+import React, { PropsWithChildren, useRef, useState } from 'react'
 import {
   AppBar,
   Button,
+  ButtonGroup,
   ClickAwayListener,
   Grid,
   MenuList,
@@ -20,29 +21,59 @@ import { routeNames } from '@/common/route-names'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import Image from 'next/image'
 
 export const HeaderBase = ({ children }: PropsWithChildren) => {
+  const { pathname } = useRouter()
   return (
     <AppBar>
       <Toolbar
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignContent: 'center'
+          display: 'grid',
+          alignContent: 'center',
+          gap: '10px',
+          gridTemplateColumns: '70px auto 1fr'
         }}
       >
-        <Typography
+        <Button component={Link} href={routeNames.main}>
+          <Image src={'/coupon.png'} alt={'Logo'} width={60} height={30} />
+        </Button>
+        <Grid
           sx={{
-            textTransform: 'uppercase',
-            color: 'white',
-            textDecoration: 'none'
+            display: 'grid',
+            gridAutoFlow: 'column',
+            columnGap: '10px'
           }}
-          component={Link}
-          href={routeNames.main}
-          variant="h6"
         >
-          Discounts
-        </Typography>
+          <Button
+            sx={{
+              textTransform: 'none',
+
+              color: theme => theme.palette.common.white
+            }}
+            size="small"
+            color={pathname === routeNames.about ? 'secondary' : 'inherit'}
+            variant={pathname === routeNames.about ? 'contained' : 'outlined'}
+            component={Link}
+            href={routeNames.about}
+          >
+            About
+          </Button>
+          <Button
+            sx={{
+              textTransform: 'none',
+
+              color: theme => theme.palette.common.white
+            }}
+            size="small"
+            color={pathname === routeNames.contact ? 'secondary' : 'inherit'}
+            variant={pathname === routeNames.contact ? 'contained' : 'outlined'}
+            component={Link}
+            href={routeNames.contact}
+          >
+            Contact
+          </Button>
+        </Grid>
         {children}
       </Toolbar>
     </AppBar>
@@ -70,132 +101,130 @@ const Header = () => {
   }
   return (
     <HeaderBase>
-      <Grid sx={{ display: 'flex' }}>
-        <Fragment>
-          <Button
-            onMouseLeave={handleClose}
-            ref={anchorRef}
-            onMouseOver={handleClick}
-            onClick={handleClick}
-            startIcon={<AccountCircleIcon />}
-            sx={{
-              textTransform: 'none'
-            }}
-            size="small"
-            color="inherit"
-            variant="outlined"
-          >
-            {username || 'Account'}
-          </Button>
-          <Popper
-            anchorEl={anchorEl}
-            style={{ zIndex: 10000 }}
-            placement="bottom"
-            open={open}
-            role={undefined}
-            transition
-          >
-            {({ TransitionProps }) => (
-              <Zoom
-                timeout={250}
-                {...TransitionProps}
-                style={{ transformOrigin: 'center top' }}
+      <Grid sx={{ textAlign: 'right' }}>
+        <Button
+          onMouseLeave={handleClose}
+          ref={anchorRef}
+          onMouseOver={handleClick}
+          onClick={handleClick}
+          startIcon={<AccountCircleIcon />}
+          sx={{
+            textTransform: 'none'
+          }}
+          size="small"
+          color="inherit"
+          variant="outlined"
+        >
+          {username || 'Account'}
+        </Button>
+        <Popper
+          anchorEl={anchorEl}
+          style={{ zIndex: 10000 }}
+          placement="bottom"
+          open={open}
+          role={undefined}
+          transition
+        >
+          {({ TransitionProps }) => (
+            <Zoom
+              timeout={250}
+              {...TransitionProps}
+              style={{ transformOrigin: 'center top' }}
+            >
+              <Paper
+                variant="elevation"
+                sx={{
+                  padding: '10px',
+                  marginTop: '5px'
+                }}
+                elevation={8}
+                onMouseLeave={handleClose}
               >
-                <Paper
-                  variant="elevation"
-                  sx={{
-                    padding: '10px',
-                    marginTop: '5px'
-                  }}
-                  elevation={8}
-                  onMouseLeave={handleClose}
-                >
-                  <ClickAwayListener onClickAway={handleClose}>
-                    {user ? (
-                      <MenuList
-                        onMouseEnter={handleClick}
-                        autoFocusItem={open}
-                        sx={{ display: 'grid', rowGap: '10px' }}
+                <ClickAwayListener onClickAway={handleClose}>
+                  {user ? (
+                    <MenuList
+                      onMouseEnter={handleClick}
+                      autoFocusItem={open}
+                      sx={{ display: 'grid', rowGap: '10px' }}
+                    >
+                      <Button
+                        href={routeNames.profile}
+                        component={Link}
+                        onClick={handleClose}
+                        startIcon={<PersonOutlineIcon />}
+                        sx={{
+                          textTransform: 'none'
+                        }}
+                        size="small"
+                        color="success"
+                        variant={
+                          pathname === routeNames.profile
+                            ? 'contained'
+                            : 'outlined'
+                        }
                       >
-                        <Button
-                          href={routeNames.profile}
-                          component={Link}
-                          onClick={handleClose}
-                          startIcon={<PersonOutlineIcon />}
-                          sx={{
-                            textTransform: 'none'
-                          }}
-                          size="small"
-                          color="success"
-                          variant={
-                            pathname === routeNames.profile
-                              ? 'contained'
-                              : 'outlined'
-                          }
-                        >
-                          Profile
-                        </Button>
-                        <Button
-                          onClick={handleLogout}
-                          startIcon={<LogoutIcon />}
-                          sx={{
-                            textTransform: 'none'
-                          }}
-                          size="small"
-                          color="error"
-                          variant="outlined"
-                        >
-                          Logout
-                        </Button>
-                      </MenuList>
-                    ) : (
-                      <MenuList
-                        onMouseEnter={handleClick}
-                        autoFocusItem={open}
-                        sx={{ display: 'grid', rowGap: '10px' }}
+                        Profile
+                      </Button>
+                      <Button
+                        onClick={handleLogout}
+                        startIcon={<LogoutIcon />}
+                        sx={{
+                          textTransform: 'none'
+                        }}
+                        size="small"
+                        color="error"
+                        variant="outlined"
                       >
-                        <Button
-                          component={Link}
-                          onClick={handleClose}
-                          startIcon={<LoginIcon />}
-                          href={routeNames.signIn}
-                          sx={{
-                            textTransform: 'none'
-                          }}
-                          size="small"
-                          color="success"
-                          variant={
-                            pathname === routeNames.signIn
-                              ? 'contained'
-                              : 'outlined'
-                          }
-                        >
-                          Sign in
-                        </Button>
-                        <Button
-                          component={Link}
-                          onClick={handleClose}
-                          startIcon={<PersonAddAltIcon />}
-                          href={routeNames.signUp}
-                          sx={{ textTransform: 'none' }}
-                          size="small"
-                          color="warning"
-                          variant={
-                            pathname === routeNames.signUp
-                              ? 'contained'
-                              : 'outlined'
-                          }
-                        >
-                          Sign up
-                        </Button>
-                      </MenuList>
-                    )}
-                  </ClickAwayListener>
-                </Paper>
-              </Zoom>
-            )}
-          </Popper>
-        </Fragment>
+                        Logout
+                      </Button>
+                    </MenuList>
+                  ) : (
+                    <MenuList
+                      onMouseEnter={handleClick}
+                      autoFocusItem={open}
+                      sx={{ display: 'grid', rowGap: '10px' }}
+                    >
+                      <Button
+                        component={Link}
+                        onClick={handleClose}
+                        startIcon={<LoginIcon />}
+                        href={routeNames.signIn}
+                        sx={{
+                          textTransform: 'none'
+                        }}
+                        size="small"
+                        color="success"
+                        variant={
+                          pathname === routeNames.signIn
+                            ? 'contained'
+                            : 'outlined'
+                        }
+                      >
+                        Sign in
+                      </Button>
+                      <Button
+                        component={Link}
+                        onClick={handleClose}
+                        startIcon={<PersonAddAltIcon />}
+                        href={routeNames.signUp}
+                        sx={{ textTransform: 'none' }}
+                        size="small"
+                        color="warning"
+                        variant={
+                          pathname === routeNames.signUp
+                            ? 'contained'
+                            : 'outlined'
+                        }
+                      >
+                        Sign up
+                      </Button>
+                    </MenuList>
+                  )}
+                </ClickAwayListener>
+              </Paper>
+            </Zoom>
+          )}
+        </Popper>
       </Grid>
     </HeaderBase>
   )

@@ -2,5 +2,7 @@ export enum routeNames {
   main = '/',
   signIn = '/sign-in',
   signUp = '/sign-up',
-  profile = '/profile'
+  profile = '/profile',
+  about = '/about',
+  contact = '/contact'
 }
