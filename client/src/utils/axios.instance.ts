@@ -12,6 +12,7 @@ axiosInstance.interceptors.response.use(
   function (error) {
     if (error && error.response && error.response.status === 401) {
       destroyCookie(null, '_token')
+      localStorage.clear()
       window.location.reload()
     }
     return Promise.reject(error)

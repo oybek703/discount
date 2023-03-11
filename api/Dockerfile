@@ -1,7 +1,7 @@
 FROM node
 WORKDIR /opt/app
-ADD api/package*.json ./
+ADD package*.json ./
 RUN npm install
-ADD api .
+ADD . .
 RUN npm run build
 CMD ["node", "./dist/main.js"]

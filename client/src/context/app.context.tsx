@@ -37,6 +37,7 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
     })
   }
   const destroyToken = () => {
+    localStorage.clear()
     destroyCookie(null, '_token')
   }
   const getUser = async () => {
@@ -48,6 +49,7 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
               Authorization: `Bearer ${token}`
             }
           })
+          localStorage.setItem('_username', data.username)
           setUser(data)
         } catch (e) {
           let status

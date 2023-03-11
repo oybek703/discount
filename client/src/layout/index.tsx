@@ -5,7 +5,13 @@ import { ThemeProvider } from '@mui/material'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { AppContextProvider } from '@/context/app.context'
-import Header from '@/layout/Header'
+import dynamic from 'next/dynamic'
+import { HeaderBase } from '@/layout/Header'
+
+const Header = dynamic(() => import('@/layout/Header'), {
+  ssr: false,
+  loading: loadingProps => <HeaderBase />
+})
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
