@@ -5,6 +5,7 @@
 # Temporary data
 /api/data
 /api/dist
+data.txt
 
 # Env variables
 /api/.env

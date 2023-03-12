@@ -5,7 +5,8 @@ const Footer = () => {
   return (
     <Grid component="footer" sx={{ p: 1, backgroundColor: grey['300'] }}>
       <Typography align="center">
-        &copy; 2022-2023 Все права защищены.
+        &copy; 2023 TopAksiya.uz - Акции, скидки, каталоги магазинов
+        Узбекистана. Все права защищены.
       </Typography>
     </Grid>
   )

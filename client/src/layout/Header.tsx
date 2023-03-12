@@ -72,6 +72,16 @@ const LinkBtn = ({ title, route, onClick }: ILinkBtnProps) => {
   )
 }
 
+const NavigationLinks = () => {
+  return (
+    <>
+      <LinkBtn route={routeNames.main} title="Главная" />
+      <LinkBtn route={routeNames.about} title="О нас" />
+      <LinkBtn route={routeNames.contacts} title="Контакты" />
+    </>
+  )
+}
+
 export const HeaderBase = ({ children }: PropsWithChildren) => {
   const theme = useTheme()
   const downSm = useMediaQuery(theme.breakpoints.down('sm'))
@@ -136,9 +146,7 @@ const Header = () => {
             marginLeft: '40px'
           }}
         >
-          <LinkBtn route={routeNames.main} title="Главная" />
-          <LinkBtn route={routeNames.about} title="О нас" />
-          <LinkBtn route={routeNames.contacts} title="Контакты" />
+          <NavigationLinks />
         </Grid>
       )}
       <Drawer
@@ -159,9 +167,7 @@ const Header = () => {
           <LogoLink onClick={handleDrawerClose} />
         </Grid>
         <Grid sx={{ display: 'grid', rowGap: '20px' }}>
-          <LinkBtn route={routeNames.main} title="Главная" />
-          <LinkBtn route={routeNames.about} title="О нас" />
-          <LinkBtn route={routeNames.contacts} title="Контакты" />
+          <NavigationLinks />
         </Grid>
       </Drawer>
       <Grid sx={{ textAlign: 'right' }}>
